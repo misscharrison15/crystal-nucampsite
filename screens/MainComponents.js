@@ -10,8 +10,8 @@ import HomeScreen from "./HomeScreen";
 const Drawer = createDrawerNavigator();
 
 const screenOptions = {
-  headerTintColor: "#fff",
-  headerStyle: { backgroundColor: "#5637DD" },
+  headerTintColor: '#fff',
+  headerStyle: { backgroundColor: '#5637DD' },
 };
 
 const HomeNavigator = () => {
@@ -19,9 +19,9 @@ const HomeNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
-        name="Home"
+        name='Home'
         component={HomeScreen}
-        options={{ title: "Home" }}
+        options={{ title: 'Home' }}
       />
     </Stack.Navigator>
   );
@@ -31,15 +31,15 @@ const DirectoryNavigator = () => {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="Directory" screenOptions={screenOptions}>
+    <Stack.Navigator initialRouteName='Directory' screenOptions={screenOptions}>
       <Stack.Screen
-        name="Directory"
+        name='Directory'
         component={DirectoryScreen}
-        options={{ title: "Campsite Directory" }}
+        options={{ title: 'Campsite Directory' }}
       />
 
       <Stack.Screen
-        name="CampsiteInfo"
+        name='CampsiteInfo'
         component={CampisteInfoScreen}
         options={({ route }) => ({
           title: route.params.campsite.name,
@@ -58,18 +58,18 @@ const Main = () => {
       }}
     >
       <Drawer.Navigator
-        initialRouteName="Home"
-        drawerStyle={{ backgroundColor: "#CEC8FF" }}
+        initialRouteName='Home'
+        drawerStyle={{ backgroundColor: '#CEC8FF' }}
       >
         <Drawer.Screen
-          name="Home"
+          name='Home'
           component={HomeNavigator}
-          options={{ title: "Home" }}
+          options={{ title: 'Home' }}
         />
         <Drawer.Screen
-          name="Directory"
+          name='Directory'
           component={DirectoryNavigator}
-          options={{ title: "Directory" }}
+          options={{ title: 'Directory' }}
         />
       </Drawer.Navigator>
     </View>
