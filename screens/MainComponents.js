@@ -1,13 +1,18 @@
-import { Platform, View, StyleSheet } from "react-native";
+import { Image, Platform, View, StyleSheet, Text } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
 import CampisteInfoScreen from "./CampsiteInfoScreen";
 import DirectoryScreen from "./DirectoryScreen";
 import AboutScreen from "./AboutScreen";
 import ContactScreen from "./ContactScreen";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList
+} from "@react-navigation/drawer";
 import HomeScreen from "./HomeScreen";
 import { Icon } from "react-native-elements";
+import logo from "../assets/images/logo.png";
 
 const Drawer = createDrawerNavigator();
 
@@ -116,6 +121,24 @@ const ContactNavigator = () => {
   );
 };
 
+const CustomDrawerContent = (props) => {
+  return (
+    <DrawerContentScrollView {...props}>
+      <View style={styles.drawerHeader}>
+        <View style={{ flex: 1 }}>
+          <Image source={logo} style={styles.drawerImage} />
+        </View>
+
+        <View style={{ flex: 2 }}>
+          <Text style={styles.drawerHeaderText}>NuCamp</Text>
+        </View>
+      </View>
+
+      <DrawerItemList {...props} labelStyle={{ fontWeight: "bold" }} />
+    </DrawerContentScrollView>
+  );
+};
+
 const Main = () => {
   return (
     <View
@@ -126,6 +149,7 @@ const Main = () => {
     >
       <Drawer.Navigator
         initialRouteName="Home"
+        drawerContent={CustomDrawerContent}
         drawerStyle={{ backgroundColor: "#CEC8FF" }}
       >
         <Drawer.Screen
@@ -147,48 +171,50 @@ const Main = () => {
         <Drawer.Screen
           name="Directory"
           component={DirectoryNavigator}
-          options={{ title: "Campsite Directory",
-          drawerIcon: ({ color }) => (
-            <Icon
-              name="list"
-              type="font-awesome"
-              size={24}
-              iconStyle={{ width: 24 }}
-              color={color}
-            />
-          ),
-        }} 
+          options={{
+            title: "Campsite Directory",
+            drawerIcon: ({ color }) => (
+              <Icon
+                name="list"
+                type="font-awesome"
+                size={24}
+                iconStyle={{ width: 24 }}
+                color={color}
+              />
+            ),
+          }}
         />
-        <Drawer.Screen 
-        name="About" 
-        component={AboutNavigator}
-        options={{ 
-          title: "About",
-          drawerIcon: ({ color }) => (
-            <Icon
-              name="info-circle"
-              type="font-awesome"
-              size={24}
-              iconStyle={{ width: 24 }}
-              color={color}
-            />
-          ),
-        }}
+        <Drawer.Screen
+          name="About"
+          component={AboutNavigator}
+          options={{
+            title: "About",
+            drawerIcon: ({ color }) => (
+              <Icon
+                name="info-circle"
+                type="font-awesome"
+                size={24}
+                iconStyle={{ width: 24 }}
+                color={color}
+              />
+            ),
+          }}
         />
         <Drawer.Screen
           name="Contact"
           component={ContactNavigator}
-          options={{ title: "Contact Us",
-          drawerIcon: ({ color }) => (
-            <Icon
-              name="address-card"
-              type="font-awesome"
-              size={24}
-              iconStyle={{ width: 24 }}
-              color={color}
-            />
-          ),
-        }}
+          options={{
+            title: "Contact Us",
+            drawerIcon: ({ color }) => (
+              <Icon
+                name="address-card"
+                type="font-awesome"
+                size={24}
+                iconStyle={{ width: 24 }}
+                color={color}
+              />
+            ),
+          }}
         />
       </Drawer.Navigator>
     </View>
@@ -196,6 +222,24 @@ const Main = () => {
 };
 
 const styles = StyleSheet.create({
+  drawerHeader: {
+    backgroundColor: "#5637DD",
+    height: 140,
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    flexDirection: "row",
+  },
+  drawerHeaderText: {
+    color: "#fff",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  drawerImage: {
+    margin: 10,
+    height: 60,
+    width: 60,
+  },
   stackIcon: {
     marginLeft: 10,
     color: "#fff",
