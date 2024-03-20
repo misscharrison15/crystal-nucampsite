@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import RenderCampsites from "../features/campsites/RenderCampsites";
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
 import { postComment } from '../features/comments/commentsSlice';
+import * as Animatable from 'react-native-animatable'
 
 
 
@@ -59,7 +60,7 @@ const CampisteInfoScreen = ({ route }) => {
       );
     };
     return (
-      <>
+      <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
         <FlatList
           data={comments.commentsArray.filter(
             (comment) => comment.campsiteId === campsite.id
@@ -132,7 +133,7 @@ const CampisteInfoScreen = ({ route }) => {
           </View>
 
         </Modal>
-      </>
+      </Animatable.View>
     );
 }
 
