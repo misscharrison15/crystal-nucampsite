@@ -94,7 +94,7 @@ const FavoritesScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   deleteView: {
-    flexDirection: "row",
+    flexDirection: "row", 
     justifyContent: "flex-end",
     alignItems: "center",
     flex: 1,
