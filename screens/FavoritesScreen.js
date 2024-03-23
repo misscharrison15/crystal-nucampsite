@@ -12,7 +12,7 @@ import { toggleFavorite } from "../features/favorites/favoritesSlice";
 import { Avatar, ListItem } from "react-native-elements";
 import Loading from "../components/LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from "react-native-animatable";
 
 const FavoritesScreen = ({ navigation }) => {
   const { campsitesArray, isLoading, errMess } = useSelector(
@@ -61,8 +61,10 @@ const FavoritesScreen = ({ navigation }) => {
             }
           >
             <Avatar rounded source={{ uri: baseUrl + campsite.image }} />
-            <ListItem.Title>{campsite.name}</ListItem.Title>
-            <ListItem.Subtitle>{campsite.description}</ListItem.Subtitle>
+            <ListItem.Content>
+              <ListItem.Title>{campsite.name}</ListItem.Title>
+              <ListItem.Subtitle>{campsite.description}</ListItem.Subtitle>
+            </ListItem.Content>
           </ListItem>
         </View>
       </SwipeRow>
@@ -94,7 +96,7 @@ const FavoritesScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   deleteView: {
-    flexDirection: "row", 
+    flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
     flex: 1,

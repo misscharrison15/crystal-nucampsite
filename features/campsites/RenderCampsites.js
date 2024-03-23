@@ -10,6 +10,7 @@ const RenderCampsites = (props) => {
   const view = useRef();
 
   const isLeftSwipe = ({ dx }) => dx < -200;
+  const isRightSwipe = ({ dx }) => dx > 200;
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -40,8 +41,11 @@ const RenderCampsites = (props) => {
                   : props.markFavorite(),
             },
           ],
+
           { cancelable: false }
         );
+      } else if (isRightSwipe(gestureState)) {
+        props.onShowModal();
       }
     },
   });
@@ -63,7 +67,7 @@ const RenderCampsites = (props) => {
           </Card.Image>
           <Text style={{ margin: 20 }}>{campsite.description}</Text>
 
-          <View>
+          <View style={styles.cardRow}>
             <Icon
               name={props.isFavorite ? "heart" : "heart-o"}
               type="font-awesome"
